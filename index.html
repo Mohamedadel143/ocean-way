@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OceanWay Shipping | Global Logistics Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            position: fixed;
+            inset-block-start: 0;
+            inline-size: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1a365d;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: #2b6cb0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: #2b6cb0;
+        }
+
+        /* Hero section styles */
+        .hero {
+            block-size: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                        url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') 
+                        no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-content {
+            max-inline-size: 900px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-block-end: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-block-end: 2.5rem;
+            color: #e2e8f0;
+        }
+
+        .cta-button {
+            background-color: #2b6cb0;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .cta-button:hover {
+            background-color: #2c5282;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(43, 108, 176, 0.4);
+        }
+
+        /* Services section styles */
+        .services {
+            background-color: #f7fafc;
+            padding: 6rem 2rem;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-block-end: 4rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-inline-size: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .service-card {
+            background-color: #fff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset-block-start: 0;
+            inset-inline-start: 0;
+            inline-size: 100%;
+            block-size: 5px;
+            background: #2b6cb0;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #2b6cb0;
+            margin-block-end: 1.5rem;
+        }
+
+        .service-card h3 {
+            color: #2d3748;
+            margin-block-end: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Tracking section styles */
+        .tracking {
+            text-align: center;
+            background-color: #fff;
+            padding: 6rem 2rem;
+        }
+
+        .tracking h2 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-block-end: 3rem;
+        }
+
+        .tracking-form {
+            max-inline-size: 700px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+
+        .tracking-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .tracking-form input:focus {
+            outline: none;
+            border-color: #2b6cb0;
+            box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+        }
+
+        .tracking-form button {
+            background-color: #2b6cb0;
+            color: #fff;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tracking-form button:hover {
+            background-color: #2c5282;
+            transform: translateY(-2px);
+        }
+
+        .tracking-result {
+            margin-block-start: 2rem;
+            padding: 1rem;
+            border-radius: 15px;
+            display: none;
+            max-inline-size: 700px;
+            margin-inline-start: auto;
+            margin-inline-end: auto;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #1a365d;
+            color: #e2e8f0;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-inline-size: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            color: #4299e1;
+            margin-block-end: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p {
+            margin-block-end: 0.8rem;
+            color: #cbd5e0;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-block-end: 0.8rem;
+        }
+
+        .footer-section a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #4299e1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-block-start: 3rem;
+            padding-block-start: 2rem;
+            border-block-start: 1px solid rgba(255,255,255,0.1);
+            color: #a0aec0;
+        }
+
+        /* Mobile menu styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .hamburger span {
+            inline-size: 30px;
+            block-size: 3px;
+            background-color: #2d3748;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        @media (max-inline-size: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                inset-block-start: 100%;
+                inset-inline-start: 0;
+                inline-size: 100%;
+                background-color: rgba(255, 255, 255, 0.98);
+                padding: 1.5rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .tracking-form {
+                flex-direction: column;
+            }
+
+            .tracking-form button {
+                inline-size: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-ship"></i>
+            OceanWay
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#tracking">Track Shipment</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Global Shipping Solutions</h1>
+            <p>Connecting businesses worldwide with reliable, fast, and secure shipping services</p>
+            <button class="cta-button">Get a Quote</button>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-ship"></i>
+                <h3>Ocean Freight</h3>
+                <p>Comprehensive sea freight solutions for all cargo types, from containers to bulk shipping, ensuring your goods reach their destination safely and on time.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-plane"></i>
+                <h3>Air Freight</h3>
+                <p>Express air shipping services worldwide, perfect for time-sensitive cargo and perishable goods with real-time tracking and priority handling.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-truck"></i>
+                <h3>Land Transport</h3>
+                <p>Efficient ground transportation solutions with extensive network coverage, offering door-to-door delivery and specialized vehicle options.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tracking" class="tracking">
+        <h2>Track Your Shipment</h2>
+        <div class="tracking-form">
+            <input type="text" id="tracking-number" placeholder="Enter your tracking number">
+            <button onclick="trackShipment()">Track Now</button>
+        </div>
+        <div id="tracking-result" class="tracking-result"></div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> info@oceanway.com</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Shipping Lane, Port City</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#services">Our Services</a></li>
+                    <li><a href="#tracking">Track Shipment</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Working Hours</h3>
+                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                <p>Saturday: 9:00 AM - 1:00 PM</p>
+                <p>Sunday: Closed</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 OceanWay Shipping. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        navLinks.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                });
+            });
+
+            // Quote button functionality
+            const quoteButton = document.querySelector('.cta-button');
+            quoteButton.addEventListener('click', () => {
+                alert('Thank you for your interest! Our team will contact you shortly.');
+            });
+
+            // Add scroll animation for services
+            const serviceCards = document.querySelectorAll('.service-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            serviceCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease-out';
+                observer.observe(card);
+            });
+        });
+
+        // Tracking functionality
+        function trackShipment() {
+            const trackingNumber = document.getElementById('tracking-number').value;
+            const trackingResult = document.getElementById('tracking-result');
+
+            if (!trackingNumber) {
+                alert('Please enter a tracking number');
+                return;
+            }
+
+            // Simulate tracking result
+            trackingResult.style.display = 'block';
+            trackingResult.innerHTML = `
+                <div style="background-color: #ebf8ff; padding: 2rem; border: 1px solid #4299e1; border-radius: 15px; box-shadow: 0 4px 6px rgba(66, 153, 225, 0.1);">
+                    <h3 style="color: #2b6cb0; margin-block-end: 1rem;">Tracking Information for ${trackingNumber}</h3>
+                    <div style="display: grid; gap: 1rem;">
+                        <p style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-check-circle" style="color: #48bb78;"></i>
+                            <strong>Status:</strong> In Transit
+                        </p>
+                        <p style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-map-marker-alt" style="color: #2b6cb0;"></i>
+                            <strong>Current Location:</strong> Port of Rotterdam
+                        </p>
+                        <p style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-clock" style="color: #d69e2e;"></i>
+                            <strong>Estimated Delivery:</strong> 3 business days
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
